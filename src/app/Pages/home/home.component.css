@@ -1,0 +1,21 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #b0e3eca8, #b1e6ea, #b0e3eca8);
+   font-family: Arial, sans-serif;
+}
+
+.overlay {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  color: #1b0909;
+  font-size: 70px;
+  text-align: center;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+}

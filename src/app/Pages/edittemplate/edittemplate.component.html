@@ -1,0 +1,34 @@
+<div class="main-content">
+  <div class="centered-card">
+    <h2>Update Message Template</h2>
+    <form [formGroup]="UpdateForm" (ngSubmit)="submit()" >
+      <label>Title</label>
+      <input type="text"  class="form-control"
+      formControlName="title"  placeholder="Template Title" [(ngModel)]="template.title"/>
+      <div
+      *ngIf="UpdateForm.get('title')?.touched && UpdateForm.get('title')?.invalid"
+      class="text-danger"
+    >
+      <div *ngIf="UpdateForm.get('title')?.errors?.['required']">
+        Title is required
+      </div>
+      <div *ngIf="UpdateForm.get('title')?.errors?.['pattern']">
+        Title Must Be From 2-20 Characters
+      </div>
+      </div>
+      <label>Content</label>
+      <textarea  class="form-control"
+      formControlName="content" [(ngModel)]="template.content" placeholder="Message Content" ></textarea>
+      <div
+      *ngIf="UpdateForm.get('content')?.touched && UpdateForm.get('content')?.invalid"
+      class="text-danger"
+    >
+      <div *ngIf="UpdateForm.get('content')?.errors?.['required']">
+        Content is required
+      </div>
+      </div>
+      <button type="submit">Save Template</button>
+    </form>
+  </div>
+</div>
+

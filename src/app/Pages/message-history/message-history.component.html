@@ -1,0 +1,28 @@
+<h2 class="text-center mt-4">Message History</h2>
+<div class="main-content ">
+  <table>
+    <thead>
+      <tr>
+        <th>Sender Name</th>
+        <th>PhoneNumber</th>
+        <th>Message Content</th>
+        <th>Date & Time Of Sending Message</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (Messages.length === 0) {
+        <tr>
+          <td colspan="4" class="text-center">No Messages yet</td>
+        </tr>
+      }
+
+     @for (message of Messages; track message.id ) {
+      <tr>
+      <td>{{message.senderUserName}}</td>
+      <td>{{message.phoneNumber}}</td>
+      <td>{{message.messageContent}}</td>
+      <td>{{ message.sentAt | date: 'dd MMMM yyyy - hh:mm a' }}</td>
+    }
+    </tbody>
+  </table>
+</div>

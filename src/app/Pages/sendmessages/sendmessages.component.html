@@ -1,0 +1,42 @@
+<div class="main-content" >
+  <div class="centered-card">
+    <h2>Send Message</h2>
+    <form [formGroup]="SendForm" (ngSubmit)="submit()">
+      <label>Phone Number</label>
+      <input type="text"formControlName="phoneNumber" placeholder="Ex: +201234567890" />
+      <div
+      *ngIf="SendForm.get('phoneNumber')?.touched && SendForm.get('phoneNumber')?.invalid"
+      class="text-danger"
+    ><div *ngIf="SendForm.get('phoneNumber')?.errors?.['pattern']">
+      phoneNumber Must Be 11 digits Begin with 010, 011, 012 , 015
+    </div>
+      <div *ngIf="SendForm.get('phoneNumber')?.errors?.['required']">
+        phoneNumber is required
+      </div>
+      </div>
+
+      <label>Message Content</label>
+      <textarea class="form-control"
+        formControlName="messageContent" placeholder="Message Content"></textarea>
+      <div
+        *ngIf="SendForm.get('messageContent')?.touched && SendForm.get('messageContent')?.invalid"
+        class="text-danger"
+      >
+        <div *ngIf="SendForm.get('messageContent')?.errors?.['required']">
+          Content is required
+        </div>
+      </div>
+
+      <label>Select Template (Optional)</label>
+      <select formControlName="selectedTemplateId" (change)="onTemplateSelected()">
+        <option selected [ngValue]="null">-- Select Template --</option>
+        @for (template of templates; track template.id) {
+          <option [ngValue]="template.id">{{template.title}}</option>
+        }
+      </select>
+
+
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<section>
+  <h2 class="text-center mt-4">Templates</h2>
+  <div class="main-content">
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Content</th>
+          <th>Manage</th>
+        </tr>
+      </thead>
+      <tbody>
+        @if (templates.length === 0) {
+          <tr>
+            <td colspan="3" class="text-center">No templates yet</td>
+          </tr>
+        }
+        @for(template of templates; track template.id) {
+          <tr>
+            <td>{{template.title}}</td>
+            <td style="word-break: break-word;">{{template.content}}</td>
+            <td>
+              <i class="fas fa-edit" (click)="gotoedit(template)" style="cursor: pointer;"></i>
+              <i class="fas fa-trash" (click)="Deletetemplate(template.id)" style="cursor: pointer; margin-left: 20px;"></i>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>

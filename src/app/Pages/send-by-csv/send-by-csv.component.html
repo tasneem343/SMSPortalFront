@@ -1,0 +1,44 @@
+<div class="main-content">
+  <div class="centered-card">
+    <h2>Send Message</h2>
+    <form [formGroup]="SendForm" (ngSubmit)="submit()">
+
+      <label>Upload CSV File</label>
+      <input type="file" (change)="onFileSelected($event)" />
+      <div
+        *ngIf="SendForm.get('file')?.touched && SendForm.get('file')?.invalid"
+        class="text-danger"
+      >
+        <div *ngIf="SendForm.get('file')?.errors?.['required']">
+          File is required
+        </div>
+        <div *ngIf="SendForm.get('file')?.errors?.['invalidExtension']">
+          Only CSV files are allowed
+        </div>
+      </div>
+
+      <label>Message Content</label>
+      <textarea class="form-control"
+        formControlName="messageContent"
+        placeholder="Message Content"></textarea>
+      <div
+        *ngIf="SendForm.get('messageContent')?.touched && SendForm.get('messageContent')?.invalid"
+        class="text-danger"
+      >
+        <div *ngIf="SendForm.get('messageContent')?.errors?.['required']">
+          Content is required
+        </div>
+      </div>
+
+      <label>Select Template (Optional)</label>
+      <select formControlName="selectedTemplateId" (change)="onTemplateSelected()">
+        <option selected [ngValue]="null">-- Select Template --</option>
+        @for (template of templates; track template.id) {
+          <option [ngValue]="template.id">{{template.title}}</option>
+        }
+      </select>
+
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</div>
