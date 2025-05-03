@@ -1,6 +1,12 @@
 <nav class="navbar navbar-expand-lg" style="background-color: #333;">
   <div class="container-fluid">
-    <a class="navbar-brand text-white" routerLink="/home"  style="cursor: pointer;">SMS Portal</a>
+    <a class="navbar-brand text-white" routerLink="/home" style="cursor: pointer;">SMS Portal</a>
+
+    <!-- زرار التوجّل -->
+    <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
@@ -10,27 +16,21 @@
         <li class="nav-item" *ngIf="IsLoggedIn && (role === 'Admin' || role === 'Sender')">
           <a class="nav-link text-white" routerLink="/sendcsvmessage">Send Message(CSV)</a>
         </li>
-
         <li class="nav-item" *ngIf="IsLoggedIn && (role === 'Admin' || role === 'Sender')">
           <a class="nav-link text-white" routerLink="/templates">Templates</a>
         </li>
-
         <li class="nav-item" *ngIf="IsLoggedIn && (role === 'Admin' || role === 'Sender')">
           <a class="nav-link text-white" routerLink="/createtemplate">Create Template</a>
         </li>
-
         <li class="nav-item" *ngIf="IsLoggedIn && (role === 'Admin' || role === 'Viewer')">
           <a class="nav-link text-white" routerLink="/reports">Reports</a>
         </li>
-
         <li class="nav-item" *ngIf="IsLoggedIn && (role === 'Admin' || role === 'Viewer')">
           <a class="nav-link text-white" routerLink="/messagehistory">Message History</a>
         </li>
-
         <li class="nav-item" *ngIf="IsLoggedIn">
           <a class="nav-link text-white" style="cursor: pointer;" (click)="logout()">Log out</a>
         </li>
-
         <li class="nav-item" *ngIf="!IsLoggedIn">
           <a class="nav-link text-white" routerLink="/login">Login</a>
         </li>
