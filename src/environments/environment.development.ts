@@ -1,3 +1,3 @@
 export const environment = {
-  baseUrl: 'https://localhost:7199',
+  baseUrl: 'http://smsportal.runasp.net',
 };

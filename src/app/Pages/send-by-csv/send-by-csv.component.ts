@@ -5,6 +5,7 @@ import { ITemplate } from '../../Interfaces/ITemplate';
 import { Router } from '@angular/router';
 import { SendmessageService } from '../../Services/sendmessage.service';
 import { CommonModule } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-send-by-csv',
@@ -22,6 +23,7 @@ export class SendByCSVComponent implements OnInit {
   selectedFile: File | null = null;
 
   constructor(
+    private snackbar:MatSnackBar,
     private _templateService: TemplatesService,
     private _sendmessage: SendmessageService,
     private fb: FormBuilder,
@@ -91,6 +93,12 @@ export class SendByCSVComponent implements OnInit {
 
       this._sendmessage.AddMessageCsv(formData).subscribe({
         next: (response) => {
+            this.snackbar.open('Message Send Sucessfully !', 'Close', {
+              duration: 3000, // Duration in milliseconds
+              horizontalPosition: 'end', // Horizontal position
+              verticalPosition: 'top', // Vertical position
+              panelClass: ['snackbar-success'], // Custom class for styling
+            });
           console.log('Message created:', response);
         },
         error: (err) => {

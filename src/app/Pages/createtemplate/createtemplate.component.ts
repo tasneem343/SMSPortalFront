@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { TemplatesService } from '../../Services/templates.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-createtemplate',
@@ -13,6 +14,7 @@ import { CommonModule } from '@angular/common';
 export class CreatetemplateComponent {
   CreateForm!: FormGroup;
   constructor(
+    private snackbar:MatSnackBar,
     private fb: FormBuilder,
     private router: Router,
     private _templateservice: TemplatesService
@@ -41,6 +43,12 @@ export class CreatetemplateComponent {
 
       this._templateservice.AddTemplate(formData).subscribe({
         next: (response) => {
+          this.snackbar.open('Template created Sucessfully !', 'Close', {
+            duration: 3000, // Duration in milliseconds
+            horizontalPosition: 'end', // Horizontal position
+            verticalPosition: 'top', // Vertical position
+            panelClass: ['snackbar-success'], // Custom class for styling
+          });
           console.log('template created:', response);
           this.router.navigate(['/templates']);
         },

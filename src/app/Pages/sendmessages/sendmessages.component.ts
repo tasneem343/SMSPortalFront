@@ -5,6 +5,7 @@ import { ITemplate } from '../../Interfaces/ITemplate';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SendmessageService } from '../../Services/sendmessage.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-sendmessages',
@@ -19,7 +20,8 @@ this.GetALLTemplates();
 SendForm!: FormGroup;
 
 templates!:ITemplate[]
-constructor(private _templateService: TemplatesService,private _sendmessage:SendmessageService , private fb: FormBuilder,
+constructor(private _templateService: TemplatesService,
+  private snackBar:MatSnackBar,private _sendmessage:SendmessageService , private fb: FormBuilder,
   private router:Router) {
     this.SendForm = this.fb.group({
       phoneNumber: ['', [
@@ -64,6 +66,12 @@ formData.append('messageContent', formValue.messageContent);
 
       this._sendmessage.AddMessage(formData).subscribe({
         next: (response) => {
+          this.snackBar.open('Message Send Sucessfully !', 'Close', {
+            duration: 3000, // Duration in milliseconds
+            horizontalPosition: 'end', // Horizontal position
+            verticalPosition: 'top', // Vertical position
+            panelClass: ['snackbar-success'], // Custom class for styling
+          });
           console.log('message created:', response);
         },
         error: (err) => {
