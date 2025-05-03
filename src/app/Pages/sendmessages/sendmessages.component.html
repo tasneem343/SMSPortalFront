@@ -3,7 +3,7 @@
     <h2>Send Message</h2>
     <form [formGroup]="SendForm" (ngSubmit)="submit()">
       <label>Phone Number</label>
-      <input type="text"formControlName="phoneNumber" placeholder="Ex: +201234567890" />
+      <input type="text"formControlName="phoneNumber" placeholder="Ex: 01234567890" />
       <div
       *ngIf="SendForm.get('phoneNumber')?.touched && SendForm.get('phoneNumber')?.invalid"
       class="text-danger"
